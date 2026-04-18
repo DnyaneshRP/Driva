@@ -12,15 +12,20 @@ import Sidebar from './components/owner/Sidebar'
 import Dashboard from './pages/owner/Dashboard'
 import AddCar from './pages/owner/AddCar'
 import ListCar from './pages/owner/ListCar'
+import { Toaster } from 'react-hot-toast'
+import { useAppContext } from './context/AppContext'
+import AgencyReg from './components/AgencyReg'
 
 const App = () => {
-
+  const {showAgencyReg} = useAppContext()
   const location = useLocation()
   const isOwnerPath = location.pathname.includes('owner')
 
   return (
     <main>
       {!isOwnerPath && <Header/>}
+      {showAgencyReg && <AgencyReg/>}
+      <Toaster position='bottom-right'/>
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/listing' element={<Listing/>}/>

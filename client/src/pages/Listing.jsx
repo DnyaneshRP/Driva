@@ -2,20 +2,19 @@ import React, { useState, useMemo } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import Item from '../components/Item'
 import { dummyCars } from '../assets/data'
+import { useAppContext } from '../context/AppContext'
 
 const Listing = () => {
+  const { cars, searchQuery, currency } = useAppContext()
   const [selectedFilters, setSelectedFilters] = useState(
     {
       bodyType: [],
       priceRange: []
     })
-    
+
   const [selectedSort, setSelectedSort] = useState("")
   const [currPage, setCurrPage] = useState(1)
   const itemsPerPage = 6
-  const currency = "₹"
-  const [searchQuery, setSearchQuery] = useState("")
-
   const [searchParams] = useSearchParams()
   const heroDestination = (searchParams.get("destination") || "").toLowerCase().trim()
 
@@ -32,10 +31,10 @@ const Listing = () => {
   ];
 
   const priceRange = [
-    "0 to 20000",
-    "20000 to 30000",
-    "30000 to 50000",
-    "50000 to 99000"
+    "1000000 to 5000000",
+    "5000000 to 20000000",
+    "20000000 to 50000000",
+    "50000000 to 100000000"
   ];
 
   // const toggle filter checkboxes
@@ -67,7 +66,7 @@ const Listing = () => {
     })
   }
 
-  // Type fillter
+  // Type filter
   const matchesType = (car) => {
     if (selectedFilters.bodyType.length === 0) return true;
     return selectedFilters.bodyType.includes(car.bodyType)
@@ -142,7 +141,7 @@ const Listing = () => {
               {priceRange.map((price) => (
                 <label key={price} className={"flex gap-2 text-sm font-semibold text-gray-50 mb-1"} checked={selectedFilters.priceRange.includes(price)} onChange={(e) => handleFilterChange(e.target.checked, price, "priceRange")}>
                   <input type="checkbox" />
-                  {currency}{price}
+                  {currency}{Number(price.split(" to ")[0]).toLocaleString('en-IN')} to {currency}{Number(price.split(" to ")[1]).toLocaleString('en-IN')}
                 </label>
               ))}
             </div>

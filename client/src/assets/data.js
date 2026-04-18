@@ -105,20 +105,20 @@ export const assets = {
 }
 
 export const cities = [
-    "Abu Dhabi",
-    "New York",
-    "Toronto",
-    "Berlin",
+    "Mumbai",
+    "Delhi",
+    "Bangalore",
+    "Pune",
 ];
 
 
 export const dummyAgentData = {
     "_id": "agent_2unqyL4diJFP1E3pIBnasc7w8hP",
-    "username": "Izabella Stress",
-    "image": userImg,
+    "username": "Arjun Sharma",
+    "image": "https://img.freepik.com/premium-vector/bd-monogram-logo-circle-shape-design_1024563-1725.jpg?semt=ais_hybrid&w=740&q=80",
     "role": "agencyOwner", 
-    "createdAt": "2025-03-25T09:29:16.367Z",
-    "updatedAt": "2025-04-10T06:34:48.719Z",
+    "createdAt": "2026-03-25T09:29:16.367Z",
+    "updatedAt": "2026-04-10T06:34:48.719Z",
     "__v": 1,
     "recentSearchedCities": cities,
   }
@@ -127,14 +127,14 @@ export const dummyAgentData = {
   // Agency Dummy Data
   export const dummyAgencyData = {
     "_id": "67f7642a197ac559e4089b99",
-    "name": "Aurora Motors",
-    "contact": "0123456789",
-    "email": "contact@auroramotors.com", 
-    "address": "Suite 405, Midtown Business Tower, Park Avenue",
+    "name": "Bharat Drives",
+    "contact": "9876543210",
+    "email": "contact@bharatdrives.in", 
+    "address": "Office 304, Bandra Kurla Complex, BKC Road",
     "owner": dummyAgentData,
-    "city": "Toronto",
-    "createdAt": "2025-04-12T10:45:30.000Z",
-    "updatedAt": "2025-04-12T10:45:30.000Z",
+    "city": "Mumbai",
+    "createdAt": "2026-04-12T10:45:30.000Z",
+    "updatedAt": "2026-04-12T10:45:30.000Z",
     "__v": 0
 }
 
@@ -146,13 +146,13 @@ export const dummyCars = [
         "agency": dummyAgencyData,
         "title": "Porsche 911 Carrera",
         "description": "Two-door sport coupe with sharp handling, responsive turbocharged engine, and a driver focused cockpit. Suited for spirited drives and short trips with premium materials and modern connectivity.",
-        "address": "789 Park Lane, New York, USA",
-        "city": "New York",
-        "country": "USA",
+        "address": "789 Marine Drive, Mumbai, India",
+        "city": "Mumbai",
+        "country": "India",
         "bodyType": "Coupe",
         "price":{
-          "rent": 299,
-          "sale": 33000
+          "rent": 24900,
+          "sale": 27500000
         },
         "specs": {
           "transmission": "Manual",
@@ -164,8 +164,8 @@ export const dummyCars = [
         "images": [img1, cImg2, cImg3, cImg4],
         "isAvailable": true,
         "status": "available",
-        "createdAt": "2025-04-10T06:26:04.013Z",
-        "updatedAt": "2025-04-10T06:26:04.013Z",
+        "createdAt": "2026-04-10T06:26:04.013Z",
+        "updatedAt": "2026-04-10T06:26:04.013Z",
         "__v": 0
     },
     {
@@ -173,13 +173,13 @@ export const dummyCars = [
         "agency": dummyAgencyData,
         "title": "Lamborghini Urus",
         "description": "Mid-size SUV with robust chassis, elevated ride height, and all-wheel capability. Practical interior, large cargo area, and modern driver aids for family trips and mixed road conditions.",
-        "address": "301 Sunset Boulevard, Los Angeles, USA",
-        "city": "Los Angeles",
-        "country": "USA",
+        "address": "301 MG Road, Bangalore, India",
+        "city": "Bangalore",
+        "country": "India",
         "bodyType": "SUV",
         "price":{
-         "rent": 599,
-         "sale": 29000
+         "rent": 49900,
+         "sale": 24200000
         },
          "specs": {
           "transmission": "Automatic",
@@ -191,8 +191,8 @@ export const dummyCars = [
         "images": [img2, cImg3, cImg4, cImg2],
         "isAvailable": true,
         "status": "available",
-        "createdAt": "2025-04-10T06:25:22.593Z",
-        "updatedAt": "2025-04-10T06:25:22.593Z",
+        "createdAt": "2026-04-10T06:25:22.593Z",
+        "updatedAt": "2026-04-10T06:25:22.593Z",
         "__v": 0
     },
     {
@@ -200,13 +200,13 @@ export const dummyCars = [
         "agency": dummyAgencyData,
         "title": "Audi RS3 Sportback",
         "description": "Compact hatchback built for efficient city driving, easy parking, and low running costs. Agile steering and good fuel economy with practical cargo flexibility.",
-        "address": "900 Bay Street, Toronto, Canada",
-        "city": "Toronto",
-        "country": "Canada",
+        "address": "900 FC Road, Pune, India",
+        "city": "Pune",
+        "country": "India",
         "bodyType": "Hatchback",
         "price":{
-          "rent": 299,
-          "sale": 19000
+          "rent": 24900,
+          "sale": 15800000
         },
          "specs": {
           "transmission": "Manual",
@@ -218,8 +218,8 @@ export const dummyCars = [
         "images": [img3, cImg4, cImg3, cImg2],
         "isAvailable": true,
         "status": "available",
-        "createdAt": "2025-04-10T06:24:06.285Z",
-        "updatedAt": "2025-04-10T06:24:06.285Z",
+        "createdAt": "2026-04-10T06:24:06.285Z",
+        "updatedAt": "2026-04-10T06:24:06.285Z",
         "__v": 0
     },
     {
@@ -227,13 +227,13 @@ export const dummyCars = [
         "agency": dummyAgencyData,
         "title": "Mercedes-Benz S 500",
         "description": "Four-door executive sedan focused on comfort and refinement. Smooth ride, spacious rear seating, advanced safety features, and premium cabin materials for long-distance comfort.",
-        "address": "29 Alexanderplatz, Berlin, Germany",
-        "city": "Berlin",
-        "country": "Germany",
+        "address": "29 Connaught Place, Delhi, India",
+        "city": "Delhi",
+        "country": "India",
         "bodyType": "Sedan",
          "price":{
-           "rent": 399,
-           "sale": 33000
+           "rent": 33200,
+           "sale": 27500000
         },
          "specs": {
           "transmission": "Automatic",
@@ -245,8 +245,8 @@ export const dummyCars = [
         "images": [img4, cImg2, cImg3, cImg4],
         "isAvailable": true,
         "status": "available",
-        "createdAt": "2025-04-10T06:23:20.252Z",
-        "updatedAt": "2025-04-10T06:23:20.252Z",
+        "createdAt": "2026-04-10T06:23:20.252Z",
+        "updatedAt": "2026-04-10T06:23:20.252Z",
         "__v": 0
     },
     {
@@ -254,13 +254,13 @@ export const dummyCars = [
     "agency": dummyAgencyData,
     "title": "Porsche Taycan Turbo S",
     "description": "All-electric performance sedan offering instant torque, precise handling, and luxurious cabin comfort. Ideal for buyers seeking EV performance without sacrificing refinement.",
-    "address": "1 Palm Jumeirah, Abu Dhabi, UAE",
-    "city": "Abu Dhabi",
-    "country": "UAE",
+    "address": "1 Juhu Beach Road, Mumbai, India",
+    "city": "Mumbai",
+    "country": "India",
     "bodyType": "Sedan",
     "price":{
-      "rent": 499,
-      "sale": 35000
+      "rent": 41600,
+      "sale": 29200000
     },
     "specs": {
       "transmission": "Automatic",
@@ -272,8 +272,8 @@ export const dummyCars = [
     "images": [img8, cImg2, cImg4, cImg3],
     "isAvailable": true,
     "status": "available",
-    "createdAt": "2025-04-10T06:29:30.000Z",
-    "updatedAt": "2025-04-10T06:29:30.000Z",
+    "createdAt": "2026-04-10T06:29:30.000Z",
+    "updatedAt": "2026-04-10T06:29:30.000Z",
     "__v": 0
   },
     {
@@ -281,13 +281,13 @@ export const dummyCars = [
     "agency": dummyAgencyData,
     "title": "Porsche 718 Boxster",
     "description": "Convertible with a refined chassis and retractable top for open-air driving. Comfortable seating for four, responsive handling, and modern infotainment for weekend drives.",
-    "address": "1 Palm Jumeirah, Abu Dhabi, UAE",
-    "city": "Abu Dhabi",
-    "country": "USA",
+    "address": "1 Juhu Beach Road, Mumbai, India",
+    "city": "Mumbai",
+    "country": "India",
     "bodyType": "Convertible",
      "price":{
-      "rent": 499,
-      "sale": 44000
+      "rent": 41600,
+      "sale": 36700000
     },
     "specs": {
       "transmission": "Automatic",
@@ -299,8 +299,8 @@ export const dummyCars = [
     "images": [img5, cImg3, cImg2, cImg4],
     "isAvailable": true,
     "status": "available",
-    "createdAt": "2025-04-10T06:27:30.013Z",
-    "updatedAt": "2025-04-10T06:27:30.013Z",
+    "createdAt": "2026-04-10T06:27:30.013Z",
+    "updatedAt": "2026-04-10T06:27:30.013Z",
     "__v": 0
   },
 
@@ -309,13 +309,13 @@ export const dummyCars = [
     "agency": dummyAgencyData,
     "title": "Mercedes-Benz Sprinter 3500",
     "description": "Utility cargo van designed for trades and deliveries. Large load area, durable interior surfaces, practical access points, and reliable mechanicals for daily work.",
-    "address": "88 Willow Lane, Edinburgh, UK",
-    "city": "Edinburgh",
-    "country": "UK",
+    "address": "88 Whitefield Road, Bangalore, India",
+    "city": "Bangalore",
+    "country": "India",
     "bodyType": "Van",
     "price":{
-      "rent": 199,
-      "sale": 22000
+      "rent": 16600,
+      "sale": 18300000
     },
     "specs": {
       "transmission": "Dual-clutch",
@@ -327,8 +327,8 @@ export const dummyCars = [
     "images": [img6, cImg2, cImg3, cImg4],
     "isAvailable": true,
     "status": "available",
-    "createdAt": "2025-04-10T06:28:50.013Z",
-    "updatedAt": "2025-04-10T06:28:50.013Z",
+    "createdAt": "2026-04-10T06:28:50.013Z",
+    "updatedAt": "2026-04-10T06:28:50.013Z",
     "__v": 0
   },
 
@@ -338,13 +338,13 @@ export const dummyCars = [
     "agency": dummyAgencyData,
     "title": "Lamborghini Huracán EVO",
     "description": "High-revving V10 supercar with razor-sharp handling, lightweight chassis, and premium sporty interior. Built for high-performance driving and track-capable bursts on demand.",
-    "address": "10 King's Road, London, UK",
-    "city": "London",
-    "country": "UK",
+    "address": "10 Linking Road, Mumbai, India",
+    "city": "Mumbai",
+    "country": "India",
     "bodyType": "Coupe",
     "price":{
-      "rent": 1200,
-      "sale": 44000
+      "rent": 100000,
+      "sale": 36700000
     },
     "specs": {
       "transmission": "Dual-clutch",
@@ -356,8 +356,8 @@ export const dummyCars = [
     "images": [img7, cImg3, cImg4, cImg2],
     "isAvailable": true,
     "status": "available",
-    "createdAt": "2025-04-10T06:29:10.000Z",
-    "updatedAt": "2025-04-10T06:29:10.000Z",
+    "createdAt": "2026-04-10T06:29:10.000Z",
+    "updatedAt": "2026-04-10T06:29:10.000Z",
     "__v": 0
   },
   {
@@ -365,13 +365,13 @@ export const dummyCars = [
     "agency": dummyAgencyData,
     "title": "Ferrari F8 Tributo",
     "description": "Mid-engine V8 supercar delivering blistering acceleration and sublime handling. Driver-focused cockpit with premium materials and race-bred technology for an exhilarating experience.",
-    "address": "10 Avenue Princesse Grace, Monaco",
-    "city": "Monaco",
-    "country": "Monaco",
+    "address": "10 Rajpath, Delhi, India",
+    "city": "Delhi",
+    "country": "India",
     "bodyType": "Coupe",
     "price":{
-      "rent": 1400,
-      "sale": 88000
+      "rent": 116700,
+      "sale": 73400000
     },
     "specs": {
       "transmission": "Automatic",
@@ -383,8 +383,8 @@ export const dummyCars = [
     "images": [img9, cImg3, cImg4, cImg2],
     "isAvailable": true,
     "status": "available",
-    "createdAt": "2025-04-10T06:29:50.000Z",
-    "updatedAt": "2025-04-10T06:29:50.000Z",
+    "createdAt": "2026-04-10T06:29:50.000Z",
+    "updatedAt": "2026-04-10T06:29:50.000Z",
     "__v": 0
   },
 
@@ -393,13 +393,13 @@ export const dummyCars = [
     "agency": dummyAgencyData,
     "title": "McLaren 720S",
     "description": "Lightweight carbon-fiber supercar with a twin-turbo V8, blistering acceleration, and razor-sharp handling. Designed for both road and occasional track use with driver-focused ergonomics.",
-    "address": "22 Via dei Condotti, Rome, Italy",
-    "city": "Rome",
-    "country": "Italy",
+    "address": "22 Koregaon Park, Pune, India",
+    "city": "Pune",
+    "country": "India",
     "bodyType": "Coupe",
     "price":{
-      "rent": 1300,
-      "sale": 72000
+      "rent": 108300,
+      "sale": 60000000
     },
     "specs": {
       "transmission": "Manual",
@@ -411,8 +411,8 @@ export const dummyCars = [
     "images": [img10, cImg4, cImg3, cImg2],
     "isAvailable": true,
     "status": "available",
-    "createdAt": "2025-04-10T06:30:10.000Z",
-    "updatedAt": "2025-04-10T06:30:10.000Z",
+    "createdAt": "2026-04-10T06:30:10.000Z",
+    "updatedAt": "2026-04-10T06:30:10.000Z",
     "__v": 0
   },
   {
@@ -420,13 +420,13 @@ export const dummyCars = [
     "agency": dummyAgencyData,
     "title": "Aston Martin DB11",
     "description": "Grand tourer combining refined luxury with potent V8/V12 performance. Smooth long-distance cruising, handcrafted interior, and advanced stability for comfortable high-speed touring.",
-    "address": "5 Piccadilly, London, UK",
-    "city": "London",
-    "country": "UK",
+    "address": "5 Brigade Road, Bangalore, India",
+    "city": "Bangalore",
+    "country": "India",
     "bodyType": "Grand Tourer",
     "price":{
-      "rent": 650,
-      "sale": 89000
+      "rent": 54200,
+      "sale": 74200000
     },
     "specs": {
       "transmission": "Automatic",
@@ -438,8 +438,8 @@ export const dummyCars = [
     "images": [img11, cImg3, cImg4, img2],
     "isAvailable": true,
     "status": "available",
-    "createdAt": "2025-04-10T06:30:40.000Z",
-    "updatedAt": "2025-04-10T06:30:40.000Z",
+    "createdAt": "2026-04-10T06:30:40.000Z",
+    "updatedAt": "2026-04-10T06:30:40.000Z",
     "__v": 0
   }
 ];
@@ -453,14 +453,14 @@ export const dummyBookingsData = [
         "user": dummyAgentData,
         "car": dummyCars[1],
         "agency": dummyAgencyData,
-        "pickUpDate": "2025-04-30T00:00:00.000Z",
-        "dropOffDate": "2025-05-01T00:00:00.000Z",
-        "totalPrice": 299,
+        "pickUpDate": "2026-04-30T00:00:00.000Z",
+        "dropOffDate": "2026-05-01T00:00:00.000Z",
+        "totalPrice": 24900,
         "status": "pending",
         "paymentMethod": "Stripe",
         "isPaid": false,
-        "createdAt": "2025-04-10T06:42:01.529Z",
-        "updatedAt": "2025-04-10T06:43:54.520Z",
+        "createdAt": "2026-04-10T06:42:01.529Z",
+        "updatedAt": "2026-04-10T06:43:54.520Z",
         "__v": 0
     },
     {
@@ -468,14 +468,14 @@ export const dummyBookingsData = [
         "user": dummyAgentData,
         "car": dummyCars[0],
         "agency": dummyAgencyData,
-        "pickUpDate": "2025-04-27T00:00:00.000Z",
-        "dropOffDate": "2025-04-28T00:00:00.000Z",
-        "totalPrice": 399,
+        "pickUpDate": "2026-04-27T00:00:00.000Z",
+        "dropOffDate": "2026-04-28T00:00:00.000Z",
+        "totalPrice": 33200,
         "status": "pending",
         "paymentMethod": "Pay at Pick-up",
         "isPaid": false,
-        "createdAt": "2025-04-10T06:41:45.873Z",
-        "updatedAt": "2025-04-10T06:41:45.873Z",
+        "createdAt": "2026-04-10T06:41:45.873Z",
+        "updatedAt": "2026-04-10T06:41:45.873Z",
         "__v": 0
     },
     {
@@ -483,14 +483,14 @@ export const dummyBookingsData = [
         "user": dummyAgentData,
         "car": dummyCars[3],
         "agency": dummyAgencyData,
-        "pickUpDate": "2025-04-11T00:00:00.000Z",
-        "dropOffDate": "2025-04-12T00:00:00.000Z",
-        "totalPrice": 199,
+        "pickUpDate": "2026-04-11T00:00:00.000Z",
+        "dropOffDate": "2026-04-12T00:00:00.000Z",
+        "totalPrice": 16600,
         "status": "pending",
         "paymentMethod": "Pay at Pick-up",
         "isPaid": true,
-        "createdAt": "2025-04-10T06:41:20.501Z",
-        "updatedAt": "2025-04-10T06:41:20.501Z",
+        "createdAt": "2026-04-10T06:41:20.501Z",
+        "updatedAt": "2026-04-10T06:41:20.501Z",
         "__v": 0
     }
 ]
@@ -553,6 +553,6 @@ export const blogs = [
 // Dashboard Dummy Data
 export const dummyDashboardData = {
     "totalBookings": 3,
-    "totalRevenue": 897,
+    "totalRevenue": 74700,
     "bookings": dummyBookingsData
 }

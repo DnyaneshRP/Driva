@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { assets } from '../assets/data'
 import Navbar from './Navbar'
-import { useUser, useClerk, UserButton } from '@clerk/react'
+import { useClerk, UserButton } from '@clerk/react'
+import { useAppContext } from '../context/AppContext'
 
 const Header = () => {
+  const { navigate, user, isOwner, setShowAgencyReg, searchQuery, setSearchQuery } = useAppContext()
   const [menuOpened, setMenuOpened] = useState(false)
   const [active, setActive] = useState(false)
   const [showSearch, setShowSearch] = useState(false)
   const location = useLocation()
-  const { user } = useUser()
   const { openSignIn } = useClerk()
-  const navigate = useNavigate()
 
   const BookingIcon = () => (
     <svg
@@ -36,6 +36,15 @@ const Header = () => {
   const isHomePage = location.pathname.endsWith('/')
 
   const toggleMenu = () => setMenuOpened(prev => !prev)
+
+  const handleSearchChange = (e)=> {
+    setSearchQuery(e.target.value)
+
+    // Redirect to Listing page if not already there
+    if(e.target.value && location.pathname !== "/listing") {
+      navigate('/listing')
+    } 
+  } 
 
   useEffect(() => {
     const handleScroll = () => {
@@ -69,6 +78,13 @@ const Header = () => {
           <Navbar setMenuOpened={setMenuOpened} containerStyles={menuOpened ? "flex items-start flex-col gap-y-8 fixed top-16 right-6 p-5 bg-white shadow-md w-52 ring-1 ring-slate-900/5 rounded-xl z-50" : "hidden lg:flex gap-x-5 xl:gap-x-1 text-sm font-semibold p-1"} />
           {/* Buttons &  Searchbar & Profile */}
           <div className='flex sm:flex-1 items-center sm:justify-end gap-x-4 sm:gap-x-8'>
+            {user && (
+              <button 
+              onClick={()=> isOwner ? navigate("/owner") : setShowAgencyReg(true)} 
+              className='btn-outline px-2 py-1 text-xs font-semibold ring-primary bg-transparent'>
+                {isOwner ? "Dashboard" : "Register Agency"}
+              </button>
+            )}
             {/* Searchbar */}
             <div className='relative hidden xl:flex items-center'>
               {/* Input */}
@@ -76,7 +92,7 @@ const Header = () => {
                 ? "w-66.5 opacity-100 px-4 py-2"
                 : "w-11 opacity-0 px-0 py-0"
                 }`}>
-                <input type="text" placeholder='Type here...' className='w-full text-sm outline-none pr-10 placeholder:text-gray-400' />
+                <input onChange={handleSearchChange} value={searchQuery} type="text" placeholder='Type here...' className='w-full text-sm outline-none pr-10 placeholder:text-gray-400' />
               </div>
               {/* Toggle Button */}
               <div onClick={() => setShowSearch(prev => !prev)} className='absolute right-0 ring-1 ring-slate-900/10 bg-white p-2 rounded-full cursor-pointer z-10 '>

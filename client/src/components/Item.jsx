@@ -16,7 +16,7 @@ const Item = ({ car }) => {
             style={{ backgroundColor: bgColor }}
         >
             <h4 className='line-clamp-1'>{car.title}</h4>
-            <div className='flexBetween'>
+            <div className='flex flex-col'>
                 <h5 className='my-1 text-gray-50'>{car.bodyType}</h5>
                 <div className='text-sm font-bold text-solid'>
                     {currency}

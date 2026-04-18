@@ -4,8 +4,14 @@ import "dotenv/config";
 import connectDB from "./config/mongodb.js";
 import { clerkMiddleware } from '@clerk/express';
 import clerkWebhooks from "./controllers/clerkWebhooks.js";
+import userRouter from "./routes/userRoute.js";
+import agencyRouter from "./routes/agencyRoute.js";
+import connectCloudinary from "./config/cloudinary.js";
+import carRouter from "./routes/carRoute.js";
+import bookingRouter from "./routes/bookingRoute.js";
 
 await connectDB() // Establish connection to the database
+await connectCloudinary() // Setup Cloudinary for image storage
 
 const app = express() // Initialize Express Application
 app.use(cors()) // Enables Cross-Origin Resource Sharing
@@ -16,6 +22,12 @@ app.use(clerkMiddleware())
 
 // API to listen Clerk Webhooks
 app.use("/api/clerk", clerkWebhooks)
+
+// Define API routes
+app.use('/api/user', userRouter)
+app.use('/api/agencies', agencyRouter)
+app.use('/api/cars', carRouter)
+app.use('/api/bookings', bookingRouter)
 
 // Route Endpoint to check API status
 app.get('/', (req, res)=> res.send("API Successfully Connected"))
