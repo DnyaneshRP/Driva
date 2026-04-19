@@ -1,15 +1,39 @@
 import React, { useEffect, useState } from 'react'
-import { assets, dummyBookingsData } from '../assets/data'
-import { useUser } from '@clerk/react'
+import { assets } from '../assets/data'
 import Title from '../components/Title'
+import { useAppContext } from '../context/AppContext'
+import toast from 'react-hot-toast'
 
 const MyBookings = () => {
+  const { currency, user, axios, getToken } = useAppContext()
   const [bookings, setBookings] = useState([])
-  const currency = "₹"
-  const { user } = useUser()
 
   const getUserBooking = async () => {
-    setBookings(dummyBookingsData)
+    try {
+      const { data } = await axios.get('/api/bookings/user', { headers: { Authorization: `Bearer ${await getToken()}` } })
+      if (data.success) {
+        setBookings(data.bookings)
+      } else {
+        toast.error(data.message)
+      }
+    } catch (error) {
+      toast.error(error.message)
+    }
+  }
+
+  // Stripe Payment
+  const handlePayment = async (bookingId) => {
+    try {
+      const { data } = await axios.post('/api/bookings/stripe', { bookingId }, { headers: { Authorization: `Bearer ${await getToken()}` } })
+
+      if (data.success) {
+        window.location.href = data.url
+      } else {
+        toast.error(data.message)
+      }
+    } catch (error) {
+      toast.error(error.message)
+    }
   }
 
   useEffect(() => {
@@ -76,7 +100,7 @@ const MyBookings = () => {
                   </div>
                 </div>
                 {!booking.isPaid && (
-                  <button className='btn-solid py-1! text-sm! rounded-sm'>Pay Now</button>
+                  <button onClick={()=> handlePayment(booking._id)} className='btn-solid py-1! text-sm! rounded-sm'>Pay Now</button>
                 )}
               </div>
             </div>

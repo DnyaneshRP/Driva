@@ -16,16 +16,16 @@ const Item = ({ car }) => {
             style={{ backgroundColor: bgColor }}
         >
             <h4 className='line-clamp-1'>{car.title}</h4>
-            <div className='flex flex-col'>
+            <div className='flexBetween'>
                 <h5 className='my-1 text-gray-50'>{car.bodyType}</h5>
                 <div className='text-sm font-bold text-solid'>
                     {currency}
-                    {car.price.sale} | {currency}{car.price.rent}.00 <span className='text-sm'>/ day</span>
+                    {car.price.sale} | {currency}{car.price.rent}.00<span className='text-sm'>/day</span>
                 </div>
             </div>
             {/* Image */}
-            <div className='relative py-6'>
-                <img src={car.images[0]} alt={car.title} />
+            <div className='relative py-1 h-35 overflow-hidden'>
+                <img src={car.images[0]} alt={car.title} className='w-full h-full object-contain' />
             </div>
             {/* Info */}
             <div>
@@ -34,17 +34,17 @@ const Item = ({ car }) => {
                         <img src={assets.transmission} alt="" width={19} />
                         {car.specs.transmission}
                     </p>
-                    <hr className='h-11 w-0.5 bg-slate-900/20 border-none'/>
+                    <hr className='h-11 w-0.5 bg-slate-900/20 border-none' />
                     <p className='flexCenter flex-col gap-1 font-semibold'>
                         <img src={assets.seats} alt="" width={23} />
                         {car.specs.seats}
                     </p>
-                    <hr className='h-11 w-0.5 bg-slate-900/20 border-none'/>
+                    <hr className='h-11 w-0.5 bg-slate-900/20 border-none' />
                     <p className='flexCenter flex-col gap-1 font-semibold'>
                         <img src={assets.fuelType} alt="" width={19} />
                         {car.specs.fuelType}
                     </p>
-                    <hr className='h-11 w-0.5 bg-slate-900/20 border-none'/>
+                    <hr className='h-11 w-0.5 bg-slate-900/20 border-none' />
                     <p className='flexCenter flex-col gap-1 font-semibold'>
                         <img src={assets.odometer} alt="" width={19} />
                         {car.odometer}

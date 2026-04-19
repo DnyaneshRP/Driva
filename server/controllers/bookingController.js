@@ -2,6 +2,7 @@ import Booking from "../models/Booking.js";
 import Car from "../models/Car.js";
 import Agency from "../models/Agency.js";
 import stripe from "stripe";
+import transporter from "../config/nodemailer.js"
 
 // Internal Helper
 const checkAvailability = async ({ car, pickUpDate, dropOffDate }) => {
@@ -69,6 +70,27 @@ export const bookingCreate = async (req, res) => {
       totalPrice,
     });
 
+    const mailOptions = {
+      from: process.env.SENDER_EMAIL,
+      to: req.user.email,
+      subject: "Car Booking",
+      html: `
+      <h2>Your Booking Details</h2>
+      <p>Thank you for booking with Driva! Below are your booking details: </p>
+      <ul>
+        <li><strong>Booking ID:</strong> ${booking._id}</li>
+        <li><strong>Agency Name:</strong> ${carData.agency.name}</li>
+        <li><strong>Location:</strong> ${carData.address}</li>
+        <li><strong>Date:</strong> ${booking.pickUpDate.toDateString()} - ${booking.dropOffDate.toDateString()}</li>
+        <li><strong>Booking Amount:</strong> ${process.env.CURRENCY || "₹"}${booking.totalPrice} for ${days} days</li>
+      </ul>
+      <p>We are excited to welcome you soon.</p>
+      <p>Need to change something? Contact us.</p>
+      `,
+    };
+
+    await transporter.sendMail(mailOptions)
+
     res.json({ success: true, message: "Booking Created" });
   } catch (error) {
     res.json({ success: false, message: error.message });
@@ -116,10 +138,36 @@ export const getAgencyBookings = async (req, res) => {
 };
 
 // Stripe Payment [POST "/stripe"]
-export const bookingStripePayment = async (req,res)=> {
-    try {
-        
-    } catch (error) {
-        
-    }
-}
+export const bookingStripePayment = async (req, res) => {
+  try {
+    const {bookingId} = req.body
+    const booking = await Booking.findById(bookingId)
+    const carData = await Car.findById(booking.car).populate("agency")
+    const totalPrice = booking.totalPrice
+    const {origin} = req.headers
+
+    const stripeInstance = new stripe(process.env.STRIPE_SECRET_KEY)
+    const line_items = [
+      {
+        price_data: {
+          currency: "inr",
+          product_data: {name: carData.agency.name},
+          unit_amount: totalPrice * 100,
+        },
+        quantity: 1,
+      }
+    ]
+
+    const session = await stripeInstance.checkout.sessions.create({
+      line_items,
+      mode: "payment",
+      success_url: `${origin}/processing/my-bookings`,
+      cancel_url: `${origin}/my-bookings`,
+      metadata: {bookingId}
+    })
+
+    res.json({success:true, url: session.url})
+  } catch (error) {
+    res.json({success:false, message: "Payment Failed!"})
+  }
+};

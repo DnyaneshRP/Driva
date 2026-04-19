@@ -1,19 +1,27 @@
 import React, { useEffect, useState } from 'react'
-import { assets, dummyDashboardData } from '../../assets/data'
-import { useUser } from '@clerk/react'
+import { assets } from '../../assets/data'
+import { useAppContext } from '../../context/AppContext'
+import toast from 'react-hot-toast'
 
 const Dashboard = () => {
+    const { axios, getToken, user, currency } = useAppContext()
     const [dashboardData, setDashboardData] = useState({
         bookings: [],
         totalBookings: 0,
-        totalRevenue: 0
+        totalRevenue: 0,
     })
-    const currency = "₹"
-
-    const user = useUser()
 
     const getDashboardData = async () => {
-        setDashboardData(dummyDashboardData)
+        try {
+            const { data } = await axios.get('/api/bookings/agency', { headers: { Authorization: `Bearer ${await getToken()}` } })
+            if (data.success) {
+                setDashboardData(data.dashboardData)
+            } else {
+                toast.error(data.message)
+            }
+        } catch (error) {
+            toast.error(error.message)
+        }
     }
 
     useEffect(() => {
@@ -64,8 +72,8 @@ const Dashboard = () => {
                             </div>
                             <div>{currency}{booking.totalPrice}</div>
                             <button className={`${booking.isPaid
-                                    ? "bg-green-500/80 text-white"
-                                    : "bg-red-500/80 text-white"
+                                ? "bg-green-500/80 text-white"
+                                : "bg-red-500/80 text-white"
                                 } w-22 py-0.5 rounded-full text-xs border border-green-500/30`}>{booking.isPaid ? "Paid" : "UnPaid"}</button>
                         </div>
                     ))}

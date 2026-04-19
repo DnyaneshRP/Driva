@@ -1,7 +1,6 @@
 import React, { useState, useMemo } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import Item from '../components/Item'
-import { dummyCars } from '../assets/data'
 import { useAppContext } from '../context/AppContext'
 
 const Listing = () => {
@@ -90,13 +89,13 @@ const Listing = () => {
 
   // Filtered & Sorted cars
   const filteredCars = useMemo(() => {
-    return dummyCars.filter((c) =>
+    return cars.filter((c) =>
       matchesType(c) &&
       matchesPrice(c) &&
       matchesSearch(c) &&
       matchesHeroDestination(c)
     ).sort(sortCars)
-  }, [dummyCars, selectedFilters, selectedSort, searchQuery, heroDestination])
+  }, [cars, selectedFilters, selectedSort, searchQuery, heroDestination])
 
   // Handle Pagination
   const getPaginatedCars = () => {

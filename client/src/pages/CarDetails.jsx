@@ -1,25 +1,77 @@
 import React, { useState, useEffect } from 'react'
-import { assets, dummyCars } from '../assets/data'
-import { useNavigate, useParams } from 'react-router-dom'
+import { assets } from '../assets/data'
+import { useParams } from 'react-router-dom'
 import CarImages from '../components/CarImages'
+import { useAppContext } from '../context/AppContext'
+import toast from 'react-hot-toast'
 
 const CarDetails = () => {
+  const { currency, cars, navigate, axios, getToken } = useAppContext()
   const [car, setCar] = useState(null)
   const { id } = useParams()
   const [pickUpDate, setPickUpDate] = useState(null)
   const [dropOffDate, setDropOffDate] = useState(null)
   const [isAvailable, setIsAvailable] = useState(false)
-  const currency = "₹"
-  const navigate = useNavigate()
+
+  // Check Availability
+  const checkAvailability = async () => {
+    try {
+      // Check if pickUpDate is greater than dropOffDate
+      if (pickUpDate > dropOffDate) {
+        toast.error("PickUpDate should be less than DropOffDate")
+      }
+
+      const { data } = await axios.post("/api/bookings/check-availability", { car: id, pickUpDate, dropOffDate })
+
+      if (data.success) {
+        if (data.isAvailable) {
+          setIsAvailable(true)
+          toast.success("Car is Available")
+        } else {
+          setIsAvailable(false)
+          toast.error("Car is not Available!")
+        }
+      } else {
+        toast.error(data.message)
+      }
+    } catch (error) {
+      toast.error(error.message)
+    }
+  }
+
+  // Book car if isavailable
+  const onSubmitHandler = async (e) => {
+    e.preventDefault()
+
+    try {
+      if (!isAvailable) {
+        return checkAvailability()
+      } else {
+        const { data } = await axios.post('/api/bookings/book', { car: id, pickUpDate, dropOffDate }, { headers: { Authorization: `Bearer ${await getToken()}` } })
+
+        if (data.success) {
+          toast.success(data.message)
+          navigate("/my-bookings")
+          scrollTo(0, 0)
+        } else {
+          toast.error(data.message)
+        }
+      }
+    } catch (error) {
+      toast.error(error.message)
+    }
+
+
+  }
 
   useEffect(() => {
-    if (dummyCars && dummyCars.length > 0) {
-      const foundCar = dummyCars.find(c => c._id === id)
+    if (cars && cars.length > 0) {
+      const foundCar = cars.find(c => c._id === id)
       if (foundCar) {
         setCar(foundCar)
       }
     }
-  }, [dummyCars, id])
+  }, [cars, id])
 
   return (
     car && (
@@ -77,7 +129,7 @@ const CarDetails = () => {
                 ))}
               </div>
               {/* Form | Check Availability */}
-              <form onSubmit="" className='text-gray-500 bg-primary rounded-lg px-6 py-4 flex flex-col lg:flex-row gap-4 max-w-md lg:max-w-full ring-1 ring-slate-900/5 relative mt-10'>
+              <form onSubmit={onSubmitHandler} className='text-gray-500 bg-primary rounded-lg px-6 py-4 flex flex-col lg:flex-row gap-4 max-w-md lg:max-w-full ring-1 ring-slate-900/5 relative mt-10'>
 
                 <div className='flex flex-col w-full'>
                   <div className='flex items-center gap-2'>
@@ -107,8 +159,8 @@ const CarDetails = () => {
                     className='rounded bg-white border border-gray-200 px-3 py-1.5 mt-1.5 text-sm outline-none'
                   />
                 </div>
-                <button className='flexCenter gap-1 rounded-md btn-solid min-w-44'>
-                  <img src={assets.search} alt="searchIcon" width={20} className='invert'/>
+                <button type="submit" className='flexCenter gap-1 rounded-md btn-solid min-w-44'>
+                  <img src={assets.search} alt="searchIcon" width={20} className='invert' />
                   <span>{isAvailable ? "Book Car" : "Check Dates"}</span>
                 </button>
               </form>
@@ -124,27 +176,27 @@ const CarDetails = () => {
                       </div>
                       <p>Agency Office</p>
                     </div>
-                    <img src={car.agency.owner.image} alt="" className='h-10 w-10 rounded-full'/>
+                    <img src={car.agency.owner.image} alt="" className='h-10 w-10 rounded-full' />
                   </div>
                   <div className='flexStart gap-2 p-1.5'>
                     <div className='bg-green-500/20 p-1 rounded-full border border-green-500/30'>
-                      <img src={assets.phone} alt="" width={14}/>
+                      <img src={assets.phone} alt="" width={14} />
                     </div>
                     <p>{car.agency.contact}</p>
                   </div>
                   <div className='flexStart gap-2 p-1.5'>
                     <div className='bg-green-500/20 p-1 rounded-full border border-green-500/30'>
-                      <img src={assets.mail} alt="" width={14}/>
+                      <img src={assets.mail} alt="" width={14} />
                     </div>
                     <p>{car.agency.email}</p>
                   </div>
                   <div className='flex items-center divide-x divide-gray-500/30'>
                     <button className='flex items-center justify-center gap-2 w-1/2 py-3 cursor-pointer'>
-                      <img src={assets.mail} alt="" width={19}/>
+                      <img src={assets.mail} alt="" width={19} />
                       Send email
                     </button>
                     <button className='flex items-center justify-center gap-2 w-1/2 py-3 cursor-pointer'>
-                      <img src={assets.phone} alt="" width={19}/>
+                      <img src={assets.phone} alt="" width={19} />
                       Call now
                     </button>
                   </div>
@@ -153,7 +205,7 @@ const CarDetails = () => {
             </div>
             {/* Images - Right Side */}
             <div className='flex flex-4 w-full bg-white p-4 rounded-xl my-4'>
-              <CarImages car={car}/>
+              <CarImages car={car} />
             </div>
           </div>
         </div>

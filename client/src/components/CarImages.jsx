@@ -6,7 +6,7 @@ const CarImages = ({car}) => {
     if(car) {
       setImage(car.images[0])
     }
-  }, [car])
+  }, [car._id])
 
   return (
     <div className='flex flex-col gap-5'>
