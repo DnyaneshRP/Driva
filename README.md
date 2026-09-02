@@ -8,5 +8,5 @@ vehicles, availability and bookings via a dashboard and deployed on Vercel.
 ## Technology: 
 MERN stack 
 
-### Backend Deployment (Vercel)
+**Backend Deployment (Vercel)**
 https://driva-backend.vercel.app
